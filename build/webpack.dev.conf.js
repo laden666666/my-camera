@@ -11,6 +11,9 @@ module.exports = {
 	entry: {
 		index: path.join(__dirname, "../src/index"),
 	},
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js'], 
+    },
 	output: {
 		path: path.join(__dirname, "../dist/"),
 		library: 'myCamera',
@@ -30,6 +33,14 @@ module.exports = {
 					"presets": ["es2015", "stage-3"],
 				}
 			}
+        }, {
+            test: /\.ts(x?)$/,
+            include: path.join(__dirname, '../src'),
+            use: [{
+                loader: 'babel-loader',
+            }, {
+                loader: 'ts-loader',
+            }]
         }, {
             test: /\.(png|jpg|gif|wav)$/,
             use: [
