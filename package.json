@@ -55,7 +55,7 @@
   },
   "homepage": "https://laden666666.github.io/my-camera/",
   "dependencies": {
-    "jsdom": "^9.12.0",
-    "my-jquery": "^0.2.1"
+    "my-jquery": "^0.2.1",
+    "webrtc-adapter": "^6.1.1"
   }
 }
