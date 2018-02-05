@@ -1,9 +1,11 @@
-import doc from './dom'
+// import doc from './dom'
+import {GetMedia} from './core'
 
-import './style/style.scss'
+// import './style/style.scss'
 
-module.exports = function(){
-};
+class MyCamera extends GetMedia{
+}
 
+module.exports = GetMedia
 
 
