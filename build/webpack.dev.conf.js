@@ -12,13 +12,13 @@ module.exports = {
 		index: path.join(__dirname, "../src/index"),
 	},
     resolve: {
-        extensions: ['.ts', '.tsx', '.js'], 
+        extensions: ['.ts', '.tsx', '.js'],
     },
 	output: {
 		path: path.join(__dirname, "../dist/"),
-		library: 'myCamera',
+		library: 'MyCamera',
 		libraryTarget: 'umd',
-		// 生成的打包文件名  
+		// 生成的打包文件名
 		filename: 'my-camera.js',
         publicPath: publicPath
 	},
@@ -73,8 +73,6 @@ module.exports = {
 	plugins: [
 		// 启用作用域提升（scope hoisting）
 		new webpack.optimize.ModuleConcatenationPlugin(),
-		// 作用域提升
-		new webpack.optimize.ModuleConcatenationPlugin(),
 		// 代码热替换
 		new webpack.HotModuleReplacementPlugin(),
 		// 生成最终HTML
@@ -86,7 +84,7 @@ module.exports = {
 			minify: {
 				// 移除HTML中的注释
 				removeComments: true,
-				// 删除空白符与换行符   
+				// 删除空白符与换行符
 				collapseWhitespace: false
 			}
 		}),

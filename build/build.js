@@ -2,6 +2,7 @@ var webpack = require('webpack')
 var webpackConfig = require('./webpack.prod.conf')
 var path = require('path')
 var ora = require('ora')
+var chalk = require('chalk')
 
 var spinner = ora('building for production...')
 spinner.start()

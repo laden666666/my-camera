@@ -6,14 +6,17 @@ var autoprefixer = require('autoprefixer');
 module.exports = {
     //页面入口文件配置
     entry: {
-        index: path.join(__dirname, "../src/picker"),
+        index: path.join(__dirname, "../src/index"),
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js'],
     },
     output: {
         path: path.join(__dirname, "../dist/"),
-        library: 'myPicker',
+        library: 'MyCamera',
         libraryTarget: 'umd',
         // 生成的打包文件名
-        filename: 'my-picker.js',
+        filename: 'my-camera.js',
     },
     module: {
         //加载器配置
@@ -26,6 +29,14 @@ module.exports = {
 					"presets": ["es2015", "stage-3"],
 				}
 			}
+        }, {
+            test: /\.ts(x?)$/,
+            include: path.join(__dirname, '../src'),
+            use: [{
+                loader: 'babel-loader',
+            }, {
+                loader: 'ts-loader',
+            }]
         }, {
             test: /\.(png|jpg|gif|wav)$/,
             use: [

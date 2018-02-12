@@ -6,8 +6,28 @@
 		<title></title>
 		<script src="https://cdn.bootcss.com/babel-polyfill/7.0.0-alpha.17/polyfill.js"></script>
 	</head>
-	<body style="height: 200vh">
+	<body>
+        <video id="video" autoplay></video>
 	</body>
 	<script>
+
+        var socket = new WebSocket("ws://"+document.domain+":8080");
+        socket.onopen = function(){
+            new MyCamera({
+                onGetMedia(stream){
+                    var video = document.querySelector("#video")
+                    video.src = URL.createObjectURL(stream)
+                },
+                onGetBlob(blob){
+                    var reader = new FileReader();
+                    reader.readAsArrayBuffer(blob);
+                    reader.onload = function (e) {
+                        socket.send(reader.result); //ArrayBuffer {}
+                    }
+                },
+            }).startGetMedia()
+        }
+
+
 	</script>
 </html>

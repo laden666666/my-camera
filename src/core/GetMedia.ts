@@ -25,7 +25,7 @@ export class GetMedia{
 
     async startGetMedia(){
         let stream: MediaStream = await navigator.mediaDevices.getUserMedia(this.constraints)
-            
+
         //如果浏览器支持vp9，优先返回vp9。否则返回vp8。如果都不支持，直接抛出异常
         var options = { mimeType: 'video/webm;codecs=vp9' };
         if (!MediaRecorder.isTypeSupported(options.mimeType)) {
@@ -37,20 +37,25 @@ export class GetMedia{
                 }
             }
         }
-                
-    
+
         let mediaRecorder: any = null
         try {
-            mediaRecorder = new MediaRecorder(stream, options);
+            mediaRecorder = new MediaRecorder(stream.clone(), options);
         } catch (e) {
-            throw new Error('Exception while creating MediaRecorder: '
+            throw new Error('Exception while creating MediaRecorder:'
                 + e + '. mimeType: ' + options.mimeType);
         }
         mediaRecorder.ondataavailable = (event)=>{
             if (event.data && event.data.size > 0) {
-                console.log(event.data)
+                if(typeof this.config.onGetBlob == 'function') {
+                    this.config.onGetBlob(event.data)
+                }
             }
         };
         mediaRecorder.start(10); // collect 10ms of data
+
+        if(typeof this.config.onGetMedia == 'function'){
+            this.config.onGetMedia(stream)
+        }
     }
 }

@@ -3,8 +3,6 @@ export type GetMediaConfig = {
     dateMode?: 'stream' | 'data',
     width?: number,
     height?: number,
-    onGetMedia?: (data: MediaStream )=>{
-
-    },
-
+    onGetMedia?: (data: MediaStream )=>{},
+    onGetBlob?: (data: Blob )=>{},
 }
